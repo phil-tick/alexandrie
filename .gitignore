@@ -9,3 +9,4 @@ alexandrie.db
 crate-index.txt
 .env
 docker/*/rootpass.txt
+crates/alexandrie-index/target

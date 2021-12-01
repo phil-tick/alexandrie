@@ -186,7 +186,8 @@ pub(crate) async fn put(mut req: Request<State>) -> tide::Result {
         .ok_or(AlexError::InvalidToken)?;
 
     let mut bytes = Vec::new();
-    (&mut req).take(10_000_000).read_to_end(&mut bytes).await?;
+    //(&mut req).take(10_000_000).read_to_end(&mut bytes).await?;
+    (&mut req).take(52_428_800).read_to_end(&mut bytes).await?; // 最大单个文件50mb
     let mut cursor = std::io::Cursor::new(bytes);
 
     let metadata_size = cursor.read_u32::<LittleEndian>()?;

@@ -36,11 +36,11 @@ impl Tree {
             }),
             _ => Error::from(err),
         })?;
-
+        
         let found = io::BufReader::new(file)
             .lines()
             .filter_map(|line| json::from_str::<CrateVersion>(line.ok()?.as_str()).ok())
-            .filter(|krate| req.matches(&krate.vers))
+            //.filter(|krate| req.matches(&krate.vers))
             .max_by(|k1, k2| k1.vers.cmp(&k2.vers));
 
         Ok(found.ok_or_else(|| IndexError::CrateNotFound {
